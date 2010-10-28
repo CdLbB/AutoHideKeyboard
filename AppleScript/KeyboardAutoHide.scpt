@@ -1,5 +1,5 @@
 ----------------------------------------------------------------------------------------------------------------
---This script was written by Eric Nitardy (©2010). It is available from The Modbookish and may be modified and redistributed provided appropriate credits are given, and they accompany the script.
+--This script was written by Eric Nitardy (c) 2010. It is available from The Modbookish and may be modified and redistributed provided appropriate credits are given, and they accompany the script.
 
 -- The script was designed to work with with the virtual keyboard app, "Axiotron Quickclicks", but with a few strategic adjustments might be used to auto-hide any chosen window of any application. 
 
@@ -154,7 +154,7 @@ on idle
 				else
 					set hideCount to hideCount + 1
 					
-					if hideCount ³ hideCountMax then
+					if hideCount >= hideCountMax then
 						set hideCount to 0
 						set returnPosition to MoveWindow(hidePosition)
 						WakeWindow()
@@ -169,7 +169,7 @@ on idle
 				if MouseInHideBox() is true then
 					set configCount to configCount + 1
 					
-					if configCount ³ configCountMax then
+					if configCount >= configCountMax then
 						if Config() is 0 then
 							quit
 							return
@@ -287,8 +287,8 @@ on MouseInWindow()
 	tell application "Axiotron Quickclicks" --theApp
 		set {xLow, yLow, xHi, yHi} to bounds of window theWinName
 	end tell
-	if xLow ² xCoor and xCoor ² xHi then
-		if yLow - 15 ² yCoor and yCoor ² yHi then return true
+	if xLow <= xCoor and xCoor <= xHi then
+		if yLow - 15 <= yCoor and yCoor <= yHi then return true
 	end if
 	return false
 	
@@ -301,8 +301,8 @@ on MouseInHideBox()
 	set {xCoor, yCoor} to MouseLocate()
 	set {xLow, yLow, xHi, yHi} to hideBox
 	
-	if xLow + 10 ² xCoor and xCoor ² xHi - 10 then
-		if yLow - 15 ² yCoor and yCoor ² yHi - 10 then return true
+	if xLow + 10 <= xCoor and xCoor <= xHi - 10 then
+		if yLow - 15 <= yCoor and yCoor <= yHi - 10 then return true
 	end if
 	return false
 end MouseInHideBox
