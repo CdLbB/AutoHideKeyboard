@@ -31,7 +31,7 @@ tell application "Finder"
 			set nameFshort to (items 1 thru -3 of nameF) as string
 			set theCodeIn to theResourcesP & nameF
 			set theCodeOut to appResourcesP & nameFshort
-			do shell script "gcc -Wall -o " & quoted form of theCodeOut & " " & quoted form of theCodeIn & "  -framework ApplicationServices"
+			do shell script "gcc -w -o " & quoted form of theCodeOut & " " & quoted form of theCodeIn & "  -framework ApplicationServices"
 			
 			--- other items are just copied ---		
 		else
